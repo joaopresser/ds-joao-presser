@@ -1,74 +1,73 @@
 import java.util.Scanner;
+
 public class Exercicio01 {
     public static void main(String[] args) {
-        Scanner N1 = new Scanner(System.in);
-       System.out.print("Digite o nome do funcionário: ");
-        String Nome = N1.nextLine();
+        Scanner scanner = new Scanner(System.in);
 
-        Scanner N2 = new Scanner(System.in);
-       System.out.print("Quantas horas ele tem trabalhada?: ");
-        int Horas = N2.nextInt();
+        System.out.print("Digite o nome do funcionário: ");
+        String Nome = scanner.nextLine();
 
-        Scanner N3 = new Scanner(System.in);
-       System.out.print("Qual o valor recebido por hora?: ");
-        float VporH = N3.nextFloat();
+        System.out.print("Quantas horas ele tem trabalhadas?: ");
+        int Horas = scanner.nextInt();
 
-        Scanner N4 = new Scanner(System.in);
-       System.out.print("Quantos filhos menores de 14 anos o funcionário tem?: ");
-        int Filhos = N4.nextInt();
+        System.out.print("Qual o valor recebido por hora?: ");
+        float VporH = scanner.nextFloat();
 
-        Scanner N5 = new Scanner(System.in);
+        System.out.print("Quantos filhos menores de 14 anos o funcionário tem?: ");
+        int Filhos = scanner.nextInt();
+
         System.out.print("Qual a idade do funcionário?: ");
-         int Idd = N5.nextInt();
+        int Idd = scanner.nextInt();
 
-        Scanner N6 = new Scanner(System.in);
         System.out.print("Qual tempo de empresa o funcionário tem?: ");
-         int TempEmp = N6.nextInt();
-         
-         Scanner N7 = new Scanner(System.in);
-       System.out.print("Qual é o adicional por filho? ");
-        int AddFilho = N7.nextInt();
+        int TempEmp = scanner.nextInt();
 
-        N1.close();
-        N2.close();
-        N3.close();
-        N4.close();
-        N5.close();
-        N6.close();
+        System.out.print("Qual é o adicional por filho? ");
+        int AddFilho = scanner.nextInt();
 
-        float SalBrt = (float) (Horas * VporH);
-        float Imposto = (float) (8.5*100/SalBrt) ;
-        int SalFam = (int) (AddFilho * Filhos) ;
+        float SalBrt = Horas * VporH;
+        float Imposto = (SalBrt * 8.5f) / 100;  // Imposto de 8.5% do salário bruto
+        int SalFam = AddFilho * Filhos;  // Salário família por filho
+
         float IR = 0;
-
-
-        if (SalBrt > 1500) { 
-            IR = (SalBrt/100*15)} 
-
-            else if (SalBrt > 500){
-             IR = (SalBrt/100*8)} 
-         }
-          else if (SalBrt <= 500) {
-            IR = 0} 
-         }
-
-         float adc1 = 0;
-         float adc2 = 0;
-         float adc3 = 0;
-         
-         if (TempEmp > 40) { 
-            adc1 = (SalBrt/100*2)}
-
-            else if (TempEmp > 15){
-                adc2 = (SalBrt/100*3.5)}
-
-         else (TempEmp <= 15 && TempEmp > 5 && Idd > 30) {
-            adc3 = (SalBrt/100*1.5)}
-
-            
-
-         System.out.println( "O salário bruto é" + SalBrt);
-         System.out.println("O imposto sobre o salário é" + Imposto);
-         System.out.println("O salário família é" + SalFam);
+        if (SalBrt > 1500) {
+            IR = (SalBrt * 15) / 100;  // Imposto de renda de 15%
+        } else if (SalBrt > 500) {
+            IR = (SalBrt * 8) / 100;  // Imposto de renda de 8%
         }
+
+        // Calculando adicionais
+        float adc1 = 0, adc2 = 0, adc3 = 0;
+
+        if (TempEmp > 40) {
+            adc1 = (SalBrt * 2) / 100;  // Adicional de 2% se o tempo de empresa for superior a 40 anos
+        } else if (TempEmp > 15) {
+            adc2 = (SalBrt * 3.5f) / 100;  // Adicional de 3.5% se o tempo de empresa for superior a 15 anos
+        } else if (TempEmp > 5 && Idd > 30) {
+            adc3 = (SalBrt * 1.5f) / 100;  // Adicional de 1.5% se o tempo de empresa for superior a 5 anos e idade superior a 30 anos
+        }
+
+        // Calculando o total de adicionais
+        double TotalAdc = adc1 + adc2 + adc3 + SalFam;
+
+        // Calculando descontos (Imposto de renda + imposto sobre o salário)
+        double descontos = IR + Imposto;
+
+        // Calculando o salário líquido
+        double SalLiq = SalBrt - descontos + TotalAdc;
+
+        // Exibindo os resultados
+        System.out.println("----------------");
+        System.out.println("Nome: " + Nome);
+        System.out.println("Idade: " + Idd);
+        System.out.println("O salário bruto é: " + SalBrt);
+        System.out.println("O imposto sobre o salário é: " + Imposto);
+        System.out.println("O salário família é: " + SalFam);
+        System.out.println("Adicionais: " + TotalAdc);
+        System.out.println("Descontos: " + descontos);
+        System.out.println("Salário Líquido: " + SalLiq);
+
+        // Fechar o scanner no final
+        scanner.close();
     }
+}
