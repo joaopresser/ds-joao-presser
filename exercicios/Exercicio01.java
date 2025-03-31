@@ -26,25 +26,25 @@ public class Exercicio01 {
         int AddFilho = scanner.nextInt();
 
         float SalBrt = Horas * VporH;
-        float Imposto = (SalBrt * 8.5f) / 100;  // Imposto de 8.5% do salário bruto
-        int SalFam = AddFilho * Filhos;  // Salário família por filho
+        float Imposto = (SalBrt * 8.5f) / 100;  
+        int SalFam = AddFilho * Filhos;  
 
         float IR = 0;
         if (SalBrt > 1500) {
-            IR = (SalBrt * 15) / 100;  // Imposto de renda de 15%
+            IR = (SalBrt * 15) / 100;  
         } else if (SalBrt > 500) {
-            IR = (SalBrt * 8) / 100;  // Imposto de renda de 8%
+            IR = (SalBrt * 8) / 100;  
         }
 
         // Calculando adicionais
         float adc1 = 0, adc2 = 0, adc3 = 0;
 
         if (TempEmp > 40) {
-            adc1 = (SalBrt * 2) / 100;  // Adicional de 2% se o tempo de empresa for superior a 40 anos
+            adc1 = (SalBrt * 2) / 100;  
         } else if (TempEmp > 15) {
-            adc2 = (SalBrt * 3.5f) / 100;  // Adicional de 3.5% se o tempo de empresa for superior a 15 anos
+            adc2 = (SalBrt * 3.5f) / 100;  
         } else if (TempEmp > 5 && Idd > 30) {
-            adc3 = (SalBrt * 1.5f) / 100;  // Adicional de 1.5% se o tempo de empresa for superior a 5 anos e idade superior a 30 anos
+            adc3 = (SalBrt * 1.5f) / 100;  
         }
 
         // Calculando o total de adicionais
